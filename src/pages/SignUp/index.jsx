@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import {
   InputContainer,
   InputWrapper,
@@ -9,9 +11,48 @@ import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 
 import logoFoodExplorer from '../../assets/logo/logo-foodExplorer.png'
-import { useState } from 'react'
+
+import { api } from '../../utils/axios'
+import { useNavigate } from 'react-router-dom'
 
 export function SignUp() {
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+
+  const navigate = useNavigate()
+
+  async function handleSignUp() {
+    try {
+      if (!name) {
+        return alert('O nome é obrigatório!')
+      }
+
+      if (!password) {
+        return alert('A senha é obrigatório!')
+      }
+
+      if (!email) {
+        return alert('O email é obrigatório')
+      }
+
+      await api.post('/users', {
+        name,
+        email,
+        password,
+      })
+
+      navigate('/')
+      return alert('Usuário registardo com sucesso!')
+    } catch (error) {
+      if (error.response) {
+        return alert(error.response.data.message)
+      } else {
+        return alert('Não foi possivel realizar o login')
+      }
+    }
+  }
+
   return (
     <SignUpContainer>
       <LogoContainer>
@@ -25,20 +66,30 @@ export function SignUp() {
 
         <InputWrapper>
           <label>Seu nome</label>
-          <Input placeholder="Exemplo: Maria da Silva" />
+          <Input
+            placeholder="Exemplo: Maria da Silva"
+            onChange={(e) => setName(e.target.value)}
+          />
         </InputWrapper>
 
         <InputWrapper>
           <label>Email</label>
-          <Input placeholder="Exemplo: exemplo@exemplo.com.br" />
+          <Input
+            placeholder="Exemplo: exemplo@exemplo.com.br"
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </InputWrapper>
 
         <InputWrapper>
           <label>Senha</label>
-          <Input placeholder="No mínimo 6 caracteres" type="password" />
+          <Input
+            placeholder="No mínimo 6 caracteres"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </InputWrapper>
 
-        <Button title="Entrar" />
+        <Button title="Criar" onClick={handleSignUp} />
 
         <a>Criar conta</a>
       </InputContainer>
