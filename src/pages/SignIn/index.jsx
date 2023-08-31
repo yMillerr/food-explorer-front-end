@@ -11,12 +11,22 @@ import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 
 import logoFoodExplorer from '../../assets/logo/logo-foodExplorer.png'
+import { useAuthContext } from '../../context/authContext'
 
-// import { api } from '../../configs/axios'
+import { Link } from 'react-router-dom'
 
 export function SignIn() {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
+
+  const { signIn } = useAuthContext()
+
+  function HandleSignIn() {
+    signIn({
+      email,
+      password,
+    })
+  }
 
   return (
     <SignInContainer>
@@ -41,15 +51,16 @@ export function SignIn() {
         <InputWrapper>
           <label>Senha</label>
           <Input
+            type="password"
             placeholder="No mínimo 6 caracteres"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </InputWrapper>
 
-        <Button title="Entrar" />
+        <Button title="Entrar" onClick={HandleSignIn} />
 
-        <a>Criar conta</a>
+        <Link to="/register">Criar conta</Link>
       </InputContainer>
     </SignInContainer>
   )

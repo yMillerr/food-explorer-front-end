@@ -1,35 +1,75 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
 
-import { HeaderContainer, LogoContainer, MobileMenuContainer } from './styles'
+import {
+  Close,
+  Content,
+  HeaderContainer,
+  LogoContainer,
+  Trigger,
+} from './styles'
 
 import LogoFoodExplorer from '../../assets/logo/logo-foodExplorer.png'
 import MenuIcon from '../../assets/icons/icon-menu.svg'
-import ReceiptIcon from '../../assets/icons/icon-receipt.svg'
 
 import closeMenu from '../../assets/icons/icon-close.svg'
+
 import { BsSearch } from 'react-icons/bs'
+import { IconReceipt } from '../../assets/icons/icon-receipt.svg'
 import { FiLogOut } from 'react-icons/fi'
+import { IconSearch } from '../../assets/icons/icon-search.svg'
 
 import { Input } from '../Input'
+import { Footer } from '../Footer'
 
-export function Header({ isAdmin = true }) {
-  const [openMenu, setOpenMenu] = useState('close')
+import { Link } from 'react-router-dom'
 
-  const handleOpenMenu = () => setOpenMenu('open')
-  const handleCloseMenu = () => setOpenMenu('close')
+import * as Dialog from '@radix-ui/react-dialog'
 
+import { useEffect, useState } from 'react'
+
+export function Header({ isAdmin = false }) {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (innerWidth >= 1024) {
+        setOpen(false)
+      }
+    })
+  }, [])
   return (
     <HeaderContainer>
-      <button onClick={handleOpenMenu} className="menu-button">
-        <img src={MenuIcon} alt="" />
-      </button>
+      <Dialog.Root onOpenChange={setOpen} open={open}>
+        <Trigger>
+          <img src={MenuIcon} alt="" />
+        </Trigger>
+        <Dialog.Portal>
+          <Content>
+            <header>
+              <Close>
+                <img src={closeMenu} alt="" />
+                <span>Menu</span>
+              </Close>
+            </header>
 
-      <LogoContainer>
+            <main>
+              <Input icon={IconSearch} placeholder="Procure algum produto" />
+
+              <div>
+                <Link>Hello world</Link>
+              </div>
+            </main>
+
+            <Footer />
+          </Content>
+        </Dialog.Portal>
+      </Dialog.Root>
+
+      <LogoContainer to="/">
         <img src={LogoFoodExplorer} alt="" />
 
         <h1>
-          FoodExplorer
+          Food Explorer
           {isAdmin && <span>Admin</span>}
         </h1>
       </LogoContainer>
@@ -38,54 +78,25 @@ export function Header({ isAdmin = true }) {
 
       {!isAdmin && (
         <a className="receipt-button-mobile">
-          <img src={ReceiptIcon} alt="" />
+          <IconReceipt />
           <span>0</span>
         </a>
       )}
 
       {isAdmin ? (
-        <a href="/" className="dektop-order-button">
-          <span>Novo Prato</span>
-        </a>
+        <Link to="/" className="dektop-order-button">
+          Novo Prato
+        </Link>
       ) : (
-        <a href="/" className="dektop-order-button">
-          <img src={ReceiptIcon} alt="" />
-          <span>Meu pedido (0) </span>
-        </a>
+        <Link to="/" className="dektop-order-button">
+          <IconReceipt size={32} />
+          pedidos 0
+        </Link>
       )}
 
-      <button className="signout-button">
-        <FiLogOut size={32} />
-      </button>
-
-      <MobileMenuContainer className={openMenu}>
-        <header>
-          <button onClick={handleCloseMenu}>
-            <img src={closeMenu} alt="" />
-          </button>
-
-          <p>Menu</p>
-        </header>
-
-        <main>
-          <Input
-            icon={BsSearch}
-            placeholder="Busque por pratos ou ingredientes"
-          />
-
-          <div>
-            {isAdmin && (
-              <a className="menu-content" href="/">
-                Novo prato
-              </a>
-            )}
-
-            <a className="menu-content" href="/">
-              Sair
-            </a>
-          </div>
-        </main>
-      </MobileMenuContainer>
+      <Link to="/">
+        <FiLogOut size={32} color="#fff" />
+      </Link>
     </HeaderContainer>
   )
 }

@@ -55,6 +55,11 @@ export const InputContainer = styled.div`
     line-height: 2.4rem;
     font-weight: 500;
     text-align: center;
+
+    &:hover {
+      color: ${({ theme }) => theme.COLORS.LIGHT_500};
+      transition: all 0.4s;
+    }
   }
 
   @media (min-width: 760px) {

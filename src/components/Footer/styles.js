@@ -6,44 +6,43 @@ export const FooterContainer = styled.footer`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
 
-  grid-area: footer;
+  gap: 1rem;
 
-  padding: 3rem 2.8rem;
+  padding: 1.875rem 1.75rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
   grid-area: footer;
 
   > span {
-    color: ${({ theme }) => theme.COLORS.LIGHT_200};
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1.2rem;
+    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.REGULAR_200};
   }
 
   @media (min-width: 768px) {
-    > span {
-      font-size: 1.4rem;
-    }
-
-    padding: 2.4rem 12.3rem;
+    padding: 1.5rem 7.75rem;
   }
 `
 
 export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 8px;
 
   > h3 {
     color: ${({ theme }) => theme.COLORS.LIGHT_700};
-    font-size: 1.6rem;
+    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.BOLD_200};
+    font-size: 1rem;
+  }
+
+  > img {
+    height: 30px;
+    width: 30px;
   }
 
   @media (min-width: 768px) {
     > h3 {
-      font-size: 2.4rem;
+      font-size: 1.5rem;
     }
   }
 `

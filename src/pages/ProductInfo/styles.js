@@ -2,26 +2,21 @@ import styled from 'styled-components'
 
 export const ProductInfoContainer = styled.div`
   width: 100%;
-
-  display: grid;
-  grid-template-areas:
-    'header'
-    'content'
-    'footer';
+  height: 100vh;
 
   > main {
-    padding: 0 1.6rem;
+    padding: 0 1rem;
 
-    max-width: 31.6rem;
+    max-width: 316px;
     width: 100%;
 
-    margin: 1.6rem auto 3.5rem;
+    margin: 1rem auto 2.25rem;
 
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    gap: 1.6rem;
+    gap: 1rem;
 
     grid-area: content;
 
@@ -29,10 +24,10 @@ export const ProductInfoContainer = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1.1rem;
+      gap: 0.5rem;
 
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
-      font-size: 2.4rem;
+      font-size: 1.5rem;
       font-weight: 500;
 
       align-self: flex-start;
@@ -45,8 +40,8 @@ export const ProductInfoContainer = styled.div`
     }
 
     > img {
-      max-width: 26.4rem;
-      max-height: 26.4rem;
+      max-width: 264px;
+      max-height: 264px;
       width: 100%;
 
       object-fit: cover;
@@ -57,17 +52,14 @@ export const ProductInfoContainer = styled.div`
     > main {
       max-width: 1125px;
 
-      margin-top: 2.4rem;
+      margin-top: 1.5rem;
 
       flex-direction: row;
-      gap: 4.7rem;
-
-      > a {
-      }
+      gap: 3rem;
 
       > img {
-        max-height: 39rem;
-        max-width: 39rem;
+        max-height: 390px;
+        max-width: 390px;
         width: 100%;
       }
     }
@@ -77,7 +69,7 @@ export const ProductInfoContainer = styled.div`
 export const ContentInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4.8rem;
+  gap: 3rem;
 
   text-align: center;
 
@@ -90,23 +82,22 @@ export const ContentInfo = styled.div`
 
   > p {
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
-    font-family: 'Roboto', sans-serif;
-    line-height: 2.2rem;
+    font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.REGULAR_300};
   }
 
   > .controls-container {
     display: flex;
     align-items: center;
-    gap: 1.6rem;
+    gap: 1rem;
   }
 
   @media (min-width: 1024px) {
     text-align: left;
 
-    max-width: 86.7rem;
+    max-width: 867px;
 
     .controls-container {
-      max-width: 29.4rem;
+      max-width: 294px;
     }
   }
 `
@@ -118,18 +109,17 @@ export const FoodTags = styled.div`
   gap: 2.4rem;
   flex-wrap: wrap;
 
-  gap: 2.6rem;
+  gap: 1.5rem;
 
   > span {
     background-color: ${({ theme }) => theme.COLORS.DARK_1000};
 
-    padding: 0.4rem 0.8rem;
+    padding: 4px 8px;
 
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    font-size: 1.4rem;
-    line-height: 2.4rem;
+    font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_100};
 
-    border-radius: 0.5rem;
+    border-radius: 5px;
   }
 
   @media (min-width: 1024px) {
@@ -144,7 +134,7 @@ export const Controls = styled.div`
 
   > span {
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
-    font-family: 'Roboto', sans-serif;
+    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.BOLD_200};
   }
 
   > button {

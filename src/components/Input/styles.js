@@ -2,19 +2,19 @@ import styled from 'styled-components'
 
 export const InputContainer = styled.div`
   width: 100%;
-  height: 4.8rem;
+  height: 48px;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
   border: none;
-  border-radius: 0.8rem;
+  border-radius: 8px;
 
-  padding: 1.6rem 1.4rem;
+  padding: 1rem 0.875rem;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.4rem;
+  gap: 0.875rem;
 
   > input {
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
@@ -25,7 +25,7 @@ export const InputContainer = styled.div`
     border: none;
 
     width: 100%;
-    height: 4.8rem;
+    height: 48px;
   }
 
   > svg {

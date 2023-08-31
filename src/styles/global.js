@@ -8,12 +8,8 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
-  :root {
-    font-size: 62.5%;
-  }
-
   body {
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
 

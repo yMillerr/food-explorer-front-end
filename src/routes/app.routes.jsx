@@ -7,7 +7,7 @@ import { New } from '../pages/New'
 import { Layout } from '../layouts/Layout'
 import { Edit } from '../pages/Edit'
 
-export function AppUsersRoutes() {
+export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

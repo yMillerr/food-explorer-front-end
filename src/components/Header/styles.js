@@ -1,7 +1,115 @@
 import styled from 'styled-components'
 
+import { Link } from 'react-router-dom'
+
+import * as Dialog from '@radix-ui/react-dialog'
+
+export const Trigger = styled(Dialog.Trigger)`
+  background: none;
+  border: none;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`
+
+export const Content = styled(Dialog.Content)`
+  width: 100vw;
+  height: 100vh;
+
+  background-color: ${({ theme }) => theme.COLORS.DARK_400};
+
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &[data-state='open'] {
+    animation: open 0.6s ease-in-out;
+  }
+
+  &:not([data-state='open']) {
+    animation: close 0.6s;
+  }
+
+  > header {
+    min-width: 100%;
+    height: 114px;
+
+    background-color: ${({ theme }) => theme.COLORS.DARK_700};
+  }
+
+  > main {
+    max-width: 372px;
+    width: 100%;
+
+    margin: 0 auto;
+
+    flex: 1;
+
+    > div {
+      margin-top: 36px;
+
+      > a {
+        display: block;
+        padding: 0.625rem;
+
+        font: lighter 1.5rem/140% 'Poppins', sans-serif;
+        color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+        border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
+      }
+    }
+  }
+
+  @keyframes open {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes close {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  }
+`
+
+export const Close = styled(Dialog.Close)`
+  background-color: transparent;
+  border: none;
+
+  color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+
+  padding: 3.75rem 1.75rem 1.75rem;
+
+  > span {
+    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.SMALL_400};
+    font-size: 1.325rem;
+  }
+`
+
 export const HeaderContainer = styled.header`
   width: 100%;
+  height: 104px;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
@@ -15,26 +123,20 @@ export const HeaderContainer = styled.header`
   grid-area: header;
 
   > button {
-    background: none;
-    border: none;
-
-    > svg {
-      color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    }
+    max-width: 216px;
   }
 
   .receipt-button-mobile {
     position: relative;
 
     > span {
-      width: 2rem;
-      height: 2rem;
+      width: 20px;
+      height: 20px;
 
       background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
 
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
-      font-size: 1.4rem;
-      line-height: 2.4rem;
+      font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_100};
 
       border-radius: 50%;
 
@@ -43,74 +145,59 @@ export const HeaderContainer = styled.header`
       justify-content: center;
 
       position: absolute;
-      right: -1rem;
-      top: -1rem;
+      right: -10px;
+      top: -10px;
     }
   }
 
   .dektop-order-button {
-    max-width: 21.6rem;
+    max-width: 216px;
     width: 100%;
-    height: 4.8rem;
+    height: 56px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
+    gap: 8px;
 
-    padding: 1.2rem 3.2rem 1.2rem 3.2rem;
+    padding: 0.75rem 2.875rem;
 
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
 
-    border-radius: 0.5rem;
+    border-radius: 5px;
 
     display: none;
 
-    > span {
-      color: ${({ theme }) => theme.COLORS.LIGHT_100};
-      font-size: 1.4rem;
-      line-height: 2.4rem;
-    }
-
-    img {
-      width: 3.2rem;
-      height: 3.2rem;
-    }
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_100};
   }
 
   div:nth-child(3),
-  .signout-button {
+  a:last-child {
     display: none;
   }
 
-  .close {
-    animation: closeMenu 0.9s ease;
-    visibility: hidden;
-  }
-
-  .open {
-    animation: openMenu 0.9s backwards;
-  }
-
   @media (min-width: 1024px) {
-    > .menu-button {
+    > .menu-button,
+    .receipt-button-mobile {
       display: none;
     }
 
-    div:nth-child(3),
+    > div:nth-child(3),
+    a:last-child,
     .signout-button,
     .dektop-order-button {
       display: flex;
     }
 
     justify-content: space-between;
-    gap: 3.2rem;
+    gap: 2rem;
 
-    padding: 2.4rem 12.3rem;
+    padding: 1.5rem 7.75rem;
   }
 `
 
-export const LogoContainer = styled.div`
+export const LogoContainer = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.8rem;
@@ -121,27 +208,27 @@ export const LogoContainer = styled.div`
   }
 
   > h1 {
-    font-size: 2.1rem;
-    line-height: 2.4rem;
-    font-family: 'Roboto', sans-serif;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.BOLD_200};
 
     display: flex;
     align-items: center;
     gap: 0.8rem;
 
     > span {
-      font-size: 1.2rem;
-      line-height: 2rem;
       color: ${({ theme }) => theme.COLORS.CAKE_200};
-      font-weight: 400;
+      font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.REGULAR_100};
     }
   }
 
   @media (min-width: 1024px) {
+    max-width: 197px;
+    width: 100%;
+
     align-items: flex-start;
+
     > h1 {
-      font-size: 2.4rem;
+      font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.BOLD_200};
       flex-direction: column;
       gap: 0;
 
@@ -151,97 +238,8 @@ export const LogoContainer = styled.div`
     }
 
     > img {
-      width: 3rem;
-      height: 3rem;
-    }
-  }
-`
-
-export const MobileMenuContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-
-  background-color: ${({ theme }) => theme.COLORS.DARK_400};
-
-  position: absolute;
-  inset: 0;
-
-  > header {
-    width: 100%;
-
-    padding: 5.6rem 2.8rem 2.4rem;
-
-    background-color: ${({ theme }) => theme.COLORS.DARK_700};
-
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-
-    > button {
-      background: none;
-      border: none;
-
-      > img {
-        background: none;
-        border: none;
-      }
-    }
-
-    > p {
-      color: ${({ theme }) => theme.COLORS.LIGHT_100};
-      font-family: 'Roboto', sans-serif;
-      font-size: 2.1rem;
-      line-height: 2.4rem;
-      font-weight: 400;
-    }
-  }
-
-  > main {
-    max-width: 37.2rem;
-    width: 100%;
-
-    margin: 3.6rem auto 0;
-
-    padding: 0 1.6rem;
-
-    > div:nth-child(1) {
-      margin-bottom: 3.6rem;
-    }
-
-    .menu-content {
-      display: block;
-
-      width: 100%;
-
-      padding: 1rem;
-
-      border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
-
-      color: ${({ theme }) => theme.COLORS.LIGHT_300};
-      font-size: 2.4rem;
-      line-height: 3.4rem;
-    }
-  }
-
-  @keyframes openMenu {
-    0% {
-      opacity: 0;
-      transform: translateX(-30rem);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes closeMenu {
-    0% {
-      transform: translateX(0);
-    }
-
-    100% {
-      transform: translateX(-30rem);
+      width: 30px;
+      height: 30px;
     }
   }
 `

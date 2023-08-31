@@ -7,11 +7,14 @@ import { theme } from './styles/theme/default'
 
 import { Router } from './routes'
 
+import { AuthContextProvider } from './context/authContext'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Router />
+      <AuthContextProvider>
+        <Router />
+      </AuthContextProvider>
     </ThemeProvider>
   </React.StrictMode>,
 )

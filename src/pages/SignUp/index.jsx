@@ -13,7 +13,7 @@ import { Input } from '../../components/Input'
 import logoFoodExplorer from '../../assets/logo/logo-foodExplorer.png'
 
 import { api } from '../../utils/axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 export function SignUp() {
   const [name, setName] = useState('')
@@ -91,7 +91,7 @@ export function SignUp() {
 
         <Button title="Criar" onClick={handleSignUp} />
 
-        <a>Criar conta</a>
+        <Link to="/">Fazer login</Link>
       </InputContainer>
     </SignUpContainer>
   )
