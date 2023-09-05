@@ -1,144 +1,123 @@
 import styled from 'styled-components'
 
-export const ProductInfoContainer = styled.div`
-  width: 100%;
+export const ProductInfoContainer = styled.main`
+  padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+  }
+`
+
+export const Content = styled.section`
   height: 100vh;
+  max-width: 316px;
 
-  > main {
-    padding: 0 1rem;
+  margin: 2rem auto;
 
-    max-width: 316px;
-    width: 100%;
-
-    margin: 1rem auto 2.25rem;
-
+  > header {
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: center;
     gap: 1rem;
 
-    grid-area: content;
-
     > a {
+      font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_300};
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-
-      color: ${({ theme }) => theme.COLORS.LIGHT_300};
-      font-size: 1.5rem;
-      font-weight: 500;
-
-      align-self: flex-start;
+      gap: 0.75rem;
 
       cursor: pointer;
-
-      &:not(:disabled):hover {
-        opacity: 0.5;
-      }
     }
 
     > img {
       max-width: 264px;
       max-height: 264px;
+
       width: 100%;
 
       object-fit: cover;
     }
   }
 
-  @media (min-width: 1024px) {
-    > main {
-      max-width: 1125px;
+  > main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
 
-      margin-top: 1.5rem;
+    margin: 1rem 0;
 
-      flex-direction: row;
-      gap: 3rem;
+    > h3 {
+      font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_300};
+      font-size: 1.75rem;
+    }
 
+    > p {
+      font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_300};
+      font-size: 1rem;
+    }
+
+    > section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+
+      margin-top: 3rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 465px;
+
+    gap: 2rem;
+
+    max-width: 1125px;
+
+    > header {
       > img {
-        max-height: 390px;
         max-width: 390px;
-        width: 100%;
+        max-height: 390px;
+      }
+    }
+
+    > main {
+      align-items: flex-start;
+      align-self: center;
+
+      > h3 {
+        font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_500};
+      }
+
+      > p {
+        font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.REGULAR_300};
+      }
+
+      > section {
+        gap: 2rem;
+
+        align-self: flex-start;
       }
     }
   }
 `
 
-export const ContentInfo = styled.div`
+export const TagsWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 3rem;
-
-  text-align: center;
-
-  > h2 {
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
-    font-weight: 500;
-    font-size: 2.7rem;
-    line-height: 2.7rem;
-  }
-
-  > p {
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
-    font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.REGULAR_300};
-  }
-
-  > .controls-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  @media (min-width: 1024px) {
-    text-align: left;
-
-    max-width: 867px;
-
-    .controls-container {
-      max-width: 294px;
-    }
-  }
-`
-
-export const FoodTags = styled.div`
-  display: flex;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
-  gap: 2.4rem;
   flex-wrap: wrap;
+  gap: 1.5rem 1.5rem;
 
-  gap: 1.5rem;
+  padding: 0 1.75rem;
 
-  > span {
-    background-color: ${({ theme }) => theme.COLORS.DARK_1000};
+  @media (min-width: 768px) {
+    padding: 0;
 
-    padding: 4px 8px;
-
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_100};
-
-    border-radius: 5px;
-  }
-
-  @media (min-width: 1024px) {
-    justify-content: flex-start;
-  }
-`
-
-export const Controls = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-
-  > span {
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
-    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.BOLD_200};
-  }
-
-  > button {
-    border: none;
-    background: none;
+    gap: 0.75rem;
   }
 `

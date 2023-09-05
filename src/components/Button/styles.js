@@ -9,6 +9,8 @@ export const ButtonContainer = styled.button`
   border: none;
   border-radius: 5px;
 
+  padding: 0.75rem 1.5rem;
+
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import { TagsContainer } from './styles'
 
 import { FiX, FiPlus } from 'react-icons/fi'

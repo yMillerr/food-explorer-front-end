@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { InputFileContainer } from './styles'
 import { MdOutlineFileUpload } from 'react-icons/md'
 

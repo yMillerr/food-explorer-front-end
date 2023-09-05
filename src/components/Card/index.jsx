@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { CardContainer, ControlsContainer } from './styles'
 
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'

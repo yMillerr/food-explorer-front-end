@@ -1,75 +1,75 @@
-import { ProductInfoContainer, ContentInfo, FoodTags, Controls } from './styles'
+import { Content, ProductInfoContainer, TagsWrapper } from './styles'
 
-import { Button } from '../../components/Button'
-
-import { MdKeyboardArrowLeft } from 'react-icons/md'
-import { FiMinus, FiPlus } from 'react-icons/fi'
 import parmaFood from '../../assets/food/food-parma.png'
 
-export function ProductInfo() {
+import { Link } from 'react-router-dom'
+
+import { IconArrowLeft } from '../../assets/icons/icon-arrow-left.svg'
+
+import { Button } from '../../components/Button'
+import { Stepper } from '../../components/Stepper'
+import { ButtonLink } from '../../components/ButtonLink'
+import { Tag } from '../../components/Tag'
+
+export function ProductInfo({ isAdmin = false }) {
   const tags = [
     {
       id: 1,
-      content: 'Bom',
+      title: 'Bom',
     },
     {
       id: 2,
-      content: 'Italia',
+      title: 'Italia',
     },
     {
       id: 3,
-      content: 'Salgado',
+      title: 'Salgado',
     },
     {
       id: 4,
-      content: 'Salgado',
+      title: 'Salgado',
     },
     {
       id: 5,
-      content: 'Salgado',
+      title: 'Salgado',
     },
   ]
 
   return (
     <ProductInfoContainer>
-      <main>
-        <a>
-          <MdKeyboardArrowLeft size={32} color="#fff" />
-          voltar
-        </a>
+      <Content>
+        <header>
+          <Link to="/">
+            <IconArrowLeft size={16} />
+            voltar
+          </Link>
 
-        <img src={parmaFood} alt="" />
+          <img src={parmaFood} alt="" />
+        </header>
 
-        <ContentInfo>
-          <h2>Salada Ravanello</h2>
+        <main>
+          <h3>Salada Ravanello</h3>
 
           <p>
             Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.
           </p>
 
-          <FoodTags>
-            {tags.map((tag) => {
-              return <span key={tag.id}>{tag.content}</span>
-            })}
-          </FoodTags>
+          <TagsWrapper>
+            {tags && tags.map((tag) => <Tag title={tag.title} key={tag.id} />)}
+          </TagsWrapper>
 
-          <div className="controls-container">
-            <Controls>
-              <button>
-                <FiMinus size={27} color="#fff" />
-              </button>
-
-              <span>0</span>
-
-              <button>
-                <FiPlus size={27} color="#fff" />
-              </button>
-            </Controls>
-
-            <Button className="send-order" title="Pedir" icon={FiPlus} />
-          </div>
-        </ContentInfo>
-      </main>
+          <section>
+            {isAdmin ? (
+              <ButtonLink title="Editar Prato" to="/" />
+            ) : (
+              <>
+                <Stepper />
+                <Button title="Adicionar" />
+              </>
+            )}
+          </section>
+        </main>
+      </Content>
     </ProductInfoContainer>
   )
 }

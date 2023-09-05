@@ -38,8 +38,9 @@ export const theme = {
 
   TYPOGRAPHY: {
     POPPINS: {
-      MEDIUM_100: '500 0.875rem/1.5rem Poppins, sans-serif',
+      MEDIUM_100: '500 0.875rem/24px Poppins, sans-serif',
       MEDIUM_200: '500 1.25rem/160% Poppins, sans-serif',
+      MEDIUM_300: '500 1.5rem/140% Poppins, sans-serif',
       MEDIUM_400: '500 2rem/140% Poppins, sans-serif',
       MEDIUM_500: '500 2.5rem/140% Poppins, sans-serif',
 
