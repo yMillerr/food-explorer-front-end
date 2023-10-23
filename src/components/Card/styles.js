@@ -1,135 +1,132 @@
 import styled from 'styled-components'
 
 export const CardContainer = styled.div`
-  max-width: 21rem;
-  height: 29.2rem;
+  max-width: 210px;
+  height: 292px;
   width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1.5rem;
-
-  padding: 2.4rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_200};
 
+  border: 1px solid ${({ theme }) => theme.COLORS.DARK_300};
+  border-radius: 8px;
+
   position: relative;
 
-  border-radius: 0.8rem;
+  padding: 1.5rem;
 
-  .button-top {
+  display: grid;
+  place-content: center;
+  gap: 0.75rem;
+
+  color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+  text-align: center;
+
+  > header {
     position: absolute;
-    right: 1.6rem;
-    top: 1.6rem;
-
-    background: none;
-    border: none;
-
-    > svg {
-      color: ${({ theme }) => theme.COLORS.LIGHT_300};
-    }
-  }
-
-  > img {
-    max-width: 8.8rem;
-    width: 100%;
-
-    object-fit: cover;
-  }
-
-  > h3 {
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
-    font-size: 1.4rem;
-    line-height: 2.4rem;
-    font-weight: 500;
-  }
-
-  > p {
-    color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    font-size: 1.4rem;
-    font-family: 'Roboto';
-    line-height: 2.2rem;
-
-    text-align: center;
-
-    display: none;
-  }
-
-  > span {
-    line-height: 1.6rem;
-    font-family: 'Roboto', sans-serif;
-    color: ${({ theme }) => theme.COLORS.CAKE_200};
-  }
-
-  @media (min-width: 768px) {
-    max-width: 30.3rem;
-    height: 46.2rem;
-
-    > p {
-      display: block;
-    }
-
-    > img {
-      max-width: 17.6rem;
-    }
-
-    > h3 {
-      font-size: 2.4rem;
-      line-height: 3.3rem;
-
-      text-align: center;
-    }
-
-    > span {
-      font-size: 3.2rem;
-      line-height: 5.1rem;
-    }
-  }
-`
-
-export const ControlsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 1.6rem;
-
-  > div {
-    display: flex;
-    align-items: center;
-    gap: 1.4rem;
+    top: 1rem;
+    right: 1rem;
 
     > button {
+      background-color: transparent;
       border: none;
-      background: none;
+    }
+  }
 
-      > svg {
-        color: ${({ theme }) => theme.COLORS.LIGHT_300};
+  > main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+
+    > img {
+      max-width: 88px;
+      height: 88px;
+
+      width: 100%;
+      object-fit: cover;
+
+      border-radius: 50%;
+    }
+
+    > a {
+      font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_100};
+      color: inherit;
+
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      > span {
+        font-size: 0.875rem;
+      }
+
+      &:hover {
+        color: ${({ theme }) => theme.COLORS.LIGHT_500};
       }
     }
 
+    > p {
+      display: none;
+    }
+
     > span {
-      font-family: 'Roboto';
-      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+      font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.REGULAR_400};
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
     }
   }
 
-  > button {
+  footer {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.75rem;
 
-    height: 3.2rem;
-    width: 100%;
+    > button {
+      height: 2rem;
+    }
   }
 
   @media (min-width: 768px) {
-    flex-direction: row;
+    max-width: 305px;
+    width: 100%;
+    height: 462px;
 
-    > button {
-      flex: 1;
-      padding: 1.2rem 2.4rem;
+    padding: 1.5rem;
+
+    > main {
+      gap: 1rem;
+
+      > img {
+        max-width: 176px;
+        height: 176px;
+      }
+
+      > a {
+        font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.BOLD_300};
+      }
+
+      > p {
+        display: inline-block;
+
+        font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.REGULAR_200};
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+      }
+
+      > span {
+        font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.REGULAR_500};
+      }
+    }
+
+    > footer {
+      flex-direction: row;
+      gap: 1rem;
+
+      > button {
+        height: 48px;
+        max-width: 92px;
+      }
     }
   }
 `

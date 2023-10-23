@@ -18,4 +18,9 @@ export const ButtonContainer = styled.button`
 
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
   font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_100};
+
+  &:disabled {
+    transition: all 0.6s;
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
+  }
 `

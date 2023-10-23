@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ProductInfoContainer = styled.main`
+export const ProductsContainer = styled.main`
   padding: 0 1rem;
 
   @media (min-width: 768px) {
@@ -9,7 +9,6 @@ export const ProductInfoContainer = styled.main`
 `
 
 export const Content = styled.section`
-  height: 100vh;
   max-width: 316px;
 
   margin: 2rem auto;
@@ -17,6 +16,7 @@ export const Content = styled.section`
   > header {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
 
     > a {
@@ -28,11 +28,15 @@ export const Content = styled.section`
       gap: 0.75rem;
 
       cursor: pointer;
+
+      align-self: flex-start;
     }
 
     > img {
       max-width: 264px;
-      max-height: 264px;
+      height: 264px;
+
+      border-radius: 50%;
 
       width: 100%;
 
@@ -81,13 +85,15 @@ export const Content = styled.section`
     > header {
       > img {
         max-width: 390px;
-        max-height: 390px;
+        height: 390px;
+
+        margin-top: 2.265rem;
       }
     }
 
     > main {
       align-items: flex-start;
-      align-self: center;
+      align-self: flex-end;
 
       > h3 {
         font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_500};
@@ -108,7 +114,7 @@ export const Content = styled.section`
 
 export const TagsWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 1.5rem 1.5rem;

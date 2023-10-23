@@ -1,56 +1,45 @@
-import { useState } from 'react'
-
-import {
-  InputContainer,
-  InputWrapper,
-  LogoContainer,
-  SignUpContainer,
-} from './styles'
+import { Form, InputWrapper, LogoContainer, SignUpContainer } from './styles'
 
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 
 import logoFoodExplorer from '../../assets/logo/logo-foodExplorer.png'
 
-import { api } from '../../utils/axios'
 import { useNavigate, Link } from 'react-router-dom'
+import { useAuthContext } from '../../context/AuthContext'
+
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
+
+const signUpFormValidation = z.object({
+  email: z
+    .string()
+    .min(1, 'Você precisa inserir seu Email')
+    .email('Insira um Email válido'),
+  password: z.string().min(6, 'Sua senha deve ter minímo 6 caracteres!'),
+  name: z.string().min(1, 'Você precisa inserir um nome'),
+})
 
 export function SignUp() {
-  const [name, setName] = useState('')
-  const [password, setPassword] = useState('')
-  const [email, setEmail] = useState('')
+  const { signUp } = useAuthContext()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(signUpFormValidation),
+  })
 
   const navigate = useNavigate()
 
-  async function handleSignUp() {
-    try {
-      if (!name) {
-        return alert('O nome é obrigatório!')
-      }
+  async function handleSignUp(event) {
+    const { name, email, password } = event
 
-      if (!password) {
-        return alert('A senha é obrigatório!')
-      }
+    await signUp({ name, email, password })
 
-      if (!email) {
-        return alert('O email é obrigatório')
-      }
-
-      await api.post('/users', {
-        name,
-        email,
-        password,
-      })
-
-      navigate('/')
-      return alert('Usuário registardo com sucesso!')
-    } catch (error) {
-      if (error.response) {
-        return alert(error.response.data.message)
-      } else {
-        return alert('Não foi possivel realizar o login')
-      }
-    }
+    navigate(-1)
   }
 
   return (
@@ -61,22 +50,27 @@ export function SignUp() {
         <h2>Food explorer</h2>
       </LogoContainer>
 
-      <InputContainer>
+      <Form onSubmit={handleSubmit(handleSignUp)} autoComplete="off">
         <h3>Crie sua conta</h3>
 
         <InputWrapper>
           <label>Seu nome</label>
           <Input
             placeholder="Exemplo: Maria da Silva"
-            onChange={(e) => setName(e.target.value)}
+            {...register('name')}
+            type="text"
+            errors={errors}
           />
         </InputWrapper>
 
         <InputWrapper>
           <label>Email</label>
+
           <Input
             placeholder="Exemplo: exemplo@exemplo.com.br"
-            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            {...register('email')}
+            errors={errors}
           />
         </InputWrapper>
 
@@ -85,14 +79,19 @@ export function SignUp() {
           <Input
             placeholder="No mínimo 6 caracteres"
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            errors={errors}
+            {...register('password')}
           />
         </InputWrapper>
 
-        <Button title="Criar" onClick={handleSignUp} />
+        <Button
+          title="Criar"
+          type="submit"
+          disabled={Object.keys(errors).length > 0 || isSubmitting}
+        />
 
         <Link to="/">Fazer login</Link>
-      </InputContainer>
+      </Form>
     </SignUpContainer>
   )
 }

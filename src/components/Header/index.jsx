@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react'
+import { ButtonLink } from '../ButtonLink'
+
 import {
   Close,
   Content,
@@ -9,7 +12,7 @@ import {
 import LogoFoodExplorer from '../../assets/logo/logo-foodExplorer.png'
 import MenuIcon from '../../assets/icons/icon-menu.svg'
 
-import closeMenu from '../../assets/icons/icon-close.svg'
+import { IconClose } from '../../assets/icons/icon-close.svg'
 
 import { BsSearch } from 'react-icons/bs'
 import { IconReceipt } from '../../assets/icons/icon-receipt.svg'
@@ -23,18 +26,26 @@ import { Link } from 'react-router-dom'
 
 import * as Dialog from '@radix-ui/react-dialog'
 
-import { useEffect, useState } from 'react'
+import { useAuthContext } from '../../context/AuthContext'
+import { useProductsContext } from '../../context/ProductsContext'
 
-export function Header({ isAdmin = false }) {
+export function Header() {
+  const { fetchProducts } = useProductsContext()
+  const { logOut, isAdmin } = useAuthContext()
+
   const [open, setOpen] = useState(false)
+  const [query, setQuery] = useState('')
+
+  function handleLogOut() {
+    logOut()
+  }
+
+  window.addEventListener('resize', () => innerWidth >= 768 && setOpen(false))
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      if (innerWidth >= 1024) {
-        setOpen(false)
-      }
-    })
-  }, [])
+    fetchProducts(query)
+  }, [query])
+
   return (
     <HeaderContainer>
       <Dialog.Root onOpenChange={setOpen} open={open}>
@@ -45,16 +56,24 @@ export function Header({ isAdmin = false }) {
           <Content>
             <header>
               <Close>
-                <img src={closeMenu} alt="" />
+                <IconClose />
                 <span>Menu</span>
               </Close>
             </header>
 
             <main>
-              <Input icon={IconSearch} placeholder="Procure algum produto" />
+              <Input
+                icon={IconSearch}
+                placeholder="Procure algum produto"
+                onChange={(e) => setQuery(e.target.value)}
+              />
 
               <div>
-                <Link>Hello world</Link>
+                {isAdmin && <Link to="/new">Novo prato</Link>}
+
+                <Link to="/" onClick={handleLogOut}>
+                  Sair
+                </Link>
               </div>
             </main>
 
@@ -63,7 +82,7 @@ export function Header({ isAdmin = false }) {
         </Dialog.Portal>
       </Dialog.Root>
 
-      <LogoContainer to="/">
+      <LogoContainer>
         <img src={LogoFoodExplorer} alt="" />
 
         <h1>
@@ -72,27 +91,28 @@ export function Header({ isAdmin = false }) {
         </h1>
       </LogoContainer>
 
-      <Input icon={BsSearch} placeholder="Busque por pratos ou ingredientes" />
+      <Input
+        icon={BsSearch}
+        placeholder="Busque por pratos ou ingredientes"
+        onChange={(e) => setQuery(e.target.value)}
+      />
 
       {!isAdmin && (
-        <a className="receipt-button-mobile">
+        <Link to="/" className="receipt-button-mobile">
           <IconReceipt />
           <span>0</span>
-        </a>
-      )}
-
-      {isAdmin ? (
-        <Link to="/" className="dektop-order-button">
-          Novo Prato
-        </Link>
-      ) : (
-        <Link to="/" className="dektop-order-button">
-          <IconReceipt size={32} />
-          pedidos 0
         </Link>
       )}
 
-      <Link to="/">
+      <section>
+        {isAdmin ? (
+          <ButtonLink title="Novo prato" to="/new" />
+        ) : (
+          <ButtonLink title="Pedidos" icon={IconReceipt} />
+        )}
+      </section>
+
+      <Link to="/" onClick={handleLogOut}>
         <FiLogOut size={32} color="#fff" />
       </Link>
     </HeaderContainer>

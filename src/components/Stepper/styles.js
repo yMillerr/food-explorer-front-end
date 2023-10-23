@@ -6,7 +6,7 @@ export const StepperContainer = styled.div`
   gap: 0.875rem;
 
   > span {
-    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.SMALL_400};
+    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.REGULAR_400};
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
   }
 

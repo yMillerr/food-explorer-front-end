@@ -1,112 +1,67 @@
-import { HomeContainer, Content, FrameContainer, Carousels } from './styles'
+import { HomeContainer, Content, FrameContainer } from './styles'
 
 import frameImgDesktop from '../../assets/img-frame-desktop.png'
 import frameImgMobile from '../../assets/img-frame-mobile.png'
 
+import { Carousel } from '../../components/Carousel'
+import { Section } from '../../components/Section'
 import { Card } from '../../components/Card'
 
-import { useKeenSlider } from 'keen-slider/react'
-import 'keen-slider/keen-slider.min.css'
-
-import { Section } from '../../components/Section'
+import { useProductsContext } from '../../context/ProductsContext'
 
 export function Home() {
-  const [sliderRef] = useKeenSlider({
-    breakpoints: {
-      '(max-width: 1024px)': {
-        slides: {
-          perView: 2,
-          spacing: 16,
-        },
-      },
+  const { products } = useProductsContext()
 
-      '(min-width: 1024px)': {
-        slides: {
-          perView: 4,
-          spacing: 27,
-        },
-      },
-    },
-  })
+  const categories = products.reduce((acc, product) => {
+    const productCategoryToLowerCase = product.category.toLowerCase()
+
+    if (!acc.includes(productCategoryToLowerCase)) {
+      acc.push(productCategoryToLowerCase)
+    }
+
+    return acc
+  }, [])
 
   return (
     <HomeContainer>
       <main>
+        <FrameContainer>
+          <img src={frameImgMobile} alt="" className="frame-mobile" />
+
+          <img src={frameImgDesktop} alt="" className="frame-desktop" />
+
+          <div>
+            <h3>Sabores inigualáveis</h3>
+            <p>Sinta o cuidado do preparo com ingredientes selecionados</p>
+          </div>
+        </FrameContainer>
+
         <Content>
-          <FrameContainer>
-            <img src={frameImgMobile} alt="" className="frame-mobile" />
-
-            <img src={frameImgDesktop} alt="" className="frame-desktop" />
-
-            <div>
-              <h3>Sabores inigualáveis</h3>
-              <p>Sinta o cuidado do preparo com ingredientes selecionados</p>
-            </div>
-          </FrameContainer>
-
-          <Section title="Refeições">
-            <Carousels ref={sliderRef} className="keen-slider">
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-            </Carousels>
-          </Section>
-
-          <Section title="Bebidas">
-            <Carousels ref={sliderRef} className="keen-slider">
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-            </Carousels>
-          </Section>
-
-          <Section title="Sobremesas">
-            <Carousels ref={sliderRef} className="keen-slider">
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-
-              <div className="keen-slider__slide">
-                <Card />
-              </div>
-            </Carousels>
-          </Section>
+          {categories.map((category) => {
+            return (
+              <Section
+                key={category}
+                title={category.replace(category[0], category[0].toUpperCase())}
+              >
+                <Carousel>
+                  {products
+                    .filter(
+                      (productCategory) =>
+                        productCategory.category === category,
+                    )
+                    .map((product) => {
+                      return (
+                        <Card
+                          product={product}
+                          key={product.id}
+                          className="keen-slider__slide"
+                        />
+                      )
+                    })}
+                </Carousel>
+              </Section>
+            )
+          })}
         </Content>
       </main>
     </HomeContainer>

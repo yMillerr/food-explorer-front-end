@@ -1,61 +1,31 @@
-import { InputWrapper, NewContainer, Form, TagsWrapper } from './styles'
+import { NewContainer } from './styles'
 
-import { Button } from '../../components/Button'
-import { FileInput } from '../../components/FileInput'
+import { Form } from './components/Form'
 
-import { MdKeyboardArrowLeft } from 'react-icons/md'
+import { IconArrowLeft } from '../../assets/icons'
 
-import { Link } from 'react-router-dom'
-import { SelectInput } from '../../components/SelectInput'
-import { Tags } from '../../components/Tags'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function New() {
+  const navigate = useNavigate()
+
+  function handleBackToHome() {
+    localStorage.removeItem('@foodexplorer:ingredients')
+
+    return navigate(-1)
+  }
+
   return (
     <NewContainer>
       <main>
-        <Link href="/">
-          <MdKeyboardArrowLeft size={22} />
+        <Link onClick={handleBackToHome}>
+          <IconArrowLeft size={14} />
           voltar
         </Link>
 
         <h2>Novo Prato</h2>
 
-        <Form action="">
-          <InputWrapper>
-            <label htmlFor="">Imagem do prato</label>
-            <FileInput title="Selecione imagem" />
-          </InputWrapper>
-
-          <InputWrapper>
-            <label htmlFor="">Nome</label>
-            <input type="text" />
-          </InputWrapper>
-
-          <InputWrapper>
-            <label htmlFor="">Categoria</label>
-            <SelectInput />
-          </InputWrapper>
-
-          <InputWrapper>
-            <label htmlFor="">Ingredientes</label>
-            <TagsWrapper>
-              <Tags isNew value="Oi" />
-              <Tags />
-            </TagsWrapper>
-          </InputWrapper>
-
-          <InputWrapper>
-            <label htmlFor="">Preço</label>
-            <input type="number" />
-          </InputWrapper>
-
-          <InputWrapper>
-            <label htmlFor="">Descrição</label>
-            <textarea />
-          </InputWrapper>
-
-          <Button title="Salvar alterações" />
-        </Form>
+        <Form />
       </main>
     </NewContainer>
   )

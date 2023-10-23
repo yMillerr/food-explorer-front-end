@@ -44,21 +44,22 @@ export const theme = {
       MEDIUM_400: '500 2rem/140% Poppins, sans-serif',
       MEDIUM_500: '500 2.5rem/140% Poppins, sans-serif',
 
-      BOLD_300: '700 1.5rem/140% Poppins, sans-serif',
-
       REGULAR_300: '400 1.5rem/140% Poppins, sans-serif',
+
+      SEMIBOLD_100: '600 1.125rem/140% Poppins, sans-serif',
+
+      BOLD_300: '700 1.5rem/140% Poppins, sans-serif',
     },
 
     ROBOTO: {
       SMALL_100: '700 0.75rem/160% Roboto, sans-serif',
       SMALL_200: '700 0.875rem/160% Roboto, sans-serif',
       SMALL_300: '400 1rem/160% Roboto, sans-serif',
-      SMALL_400: '400 1rem/100% Roboto, sans-serif',
-      SMALL_500: '400 2rem/160% Roboto, sans-serif',
 
       REGULAR_100: '400 0.75rem/160% Roboto, sans-serif',
       REGULAR_200: '400 0.875rem/160% Roboto, sans-serif',
       REGULAR_400: '400 1rem/100% Roboto, sans-serif',
+      REGULAR_500: '400 2rem/160% Roboto, sans-serif',
 
       BOLD_100: '700 1.25rem/160% Roboto, sans-serif',
       BOLD_200: '700 1.5rem Roboto, sans-serif',

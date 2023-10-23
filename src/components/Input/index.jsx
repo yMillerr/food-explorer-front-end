@@ -1,11 +1,21 @@
 import { InputContainer } from './styles'
+import { forwardRef } from 'react'
 
-export function Input({ icon: Icon, ...rest }) {
+export const Input = forwardRef(function Input(
+  { icon: Icon, errors = {}, name, type = 'text', ...rest },
+  ref,
+) {
+  const inputNameWithErrors = Object.entries(errors).map((error) => error[0])
+
   return (
-    <InputContainer>
-      {Icon && <Icon size={24} />}
+    <InputContainer errors={inputNameWithErrors}>
+      <div>
+        {Icon && <Icon size={24} />}
 
-      <input {...rest} />
+        <input {...rest} ref={ref} name={name} type={type} />
+      </div>
+
+      {errors[name] && <span>{errors[name]?.message}</span>}
     </InputContainer>
   )
-}
+})

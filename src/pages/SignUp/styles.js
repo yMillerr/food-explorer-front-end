@@ -7,43 +7,39 @@ export const SignUpContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 7.3rem;
+  gap: 4.5rem;
 
-  margin-top: 15.3rem;
-  padding: 0 3.2rem;
+  margin-top: 9.75rem;
+  padding: 0 1rem;
 
-  @media (min-width: 760px) {
+  @media (min-width: 768px) {
     flex-direction: row;
-    gap: 20rem;
-  }
+    justify-content: space-around;
 
-  @media (min-width: 1024px) {
-    gap: 30rem;
+    padding: 0 2rem;
   }
 `
 
 export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.1rem;
+  gap: 0.75rem;
 
   justify-self: center;
 
   > h2 {
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    font-size: 3.7rem;
-    line-height: 4.4rem;
-    font-family: 'Roboto', sans-serif;
+    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.BOLD_700};
   }
 `
 
-export const InputContainer = styled.div`
-  max-width: 31.6rem;
+export const Form = styled.form`
+  max-width: 316px;
   width: 100%;
 
   display: flex;
   flex-direction: column;
-  gap: 3.2rem;
+  gap: 2rem;
 
   > h3 {
     display: none;
@@ -51,9 +47,9 @@ export const InputContainer = styled.div`
 
   > a {
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    font-size: 1.4rem;
-    line-height: 2.4rem;
-    font-weight: 500;
+    font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_100};
+
+    cursor: pointer;
     text-align: center;
 
     &:hover {
@@ -62,39 +58,34 @@ export const InputContainer = styled.div`
     }
   }
 
-  @media (min-width: 760px) {
+  @media (min-width: 768px) {
     > h3 {
       display: flex;
+      align-self: center;
 
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
-      font-size: 3.2rem;
+      font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_400};
     }
+
+    max-width: 476px;
+    width: 100%;
 
     background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
-    padding: 6.4rem;
-
-    border-radius: 1.6rem;
-
-    box-sizing: content-box;
+    padding: 4rem;
+    border-radius: 1rem;
   }
 `
 
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.875rem;
 
   width: 100%;
 
   > label {
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    line-height: 100%;
-  }
-
-  @media (min-width: 760px) {
-    > input {
-      outline: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
-    }
+    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.REGULAR_400};
   }
 `

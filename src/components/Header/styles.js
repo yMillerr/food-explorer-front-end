@@ -1,14 +1,12 @@
 import styled from 'styled-components'
 
-import { Link } from 'react-router-dom'
-
 import * as Dialog from '@radix-ui/react-dialog'
 
 export const Trigger = styled(Dialog.Trigger)`
   background: none;
   border: none;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     display: none;
   }
 `
@@ -60,6 +58,8 @@ export const Content = styled(Dialog.Content)`
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
         border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
+
+        cursor: pointer;
       }
     }
   }
@@ -102,7 +102,7 @@ export const Close = styled(Dialog.Close)`
   padding: 3.75rem 1.75rem 1.75rem;
 
   > span {
-    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.SMALL_400};
+    font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.REGULAR_400};
     font-size: 1.325rem;
   }
 `
@@ -121,10 +121,6 @@ export const HeaderContainer = styled.header`
   gap: 2.4rem;
 
   grid-area: header;
-
-  > button {
-    max-width: 216px;
-  }
 
   .receipt-button-mobile {
     position: relative;
@@ -150,34 +146,19 @@ export const HeaderContainer = styled.header`
     }
   }
 
-  .dektop-order-button {
-    max-width: 216px;
-    width: 100%;
-    height: 56px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    padding: 0.75rem 2.875rem;
-
-    background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
-
-    border-radius: 5px;
-
-    display: none;
-
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_100};
-  }
-
   div:nth-child(3),
   a:last-child {
     display: none;
   }
 
-  @media (min-width: 1024px) {
+  > section {
+    max-width: 216px;
+    width: 100%;
+
+    display: none;
+  }
+
+  @media (min-width: 768px) {
     > .menu-button,
     .receipt-button-mobile {
       display: none;
@@ -185,8 +166,7 @@ export const HeaderContainer = styled.header`
 
     > div:nth-child(3),
     a:last-child,
-    .signout-button,
-    .dektop-order-button {
+    section {
       display: flex;
     }
 
@@ -197,7 +177,7 @@ export const HeaderContainer = styled.header`
   }
 `
 
-export const LogoContainer = styled(Link)`
+export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.8rem;
@@ -221,7 +201,7 @@ export const LogoContainer = styled(Link)`
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     max-width: 197px;
     width: 100%;
 

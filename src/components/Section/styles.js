@@ -1,28 +1,25 @@
 import styled from 'styled-components'
 
 export const SectionContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
+  display: grid;
+  gap: 1.5rem;
 
   width: 100%;
 
-  margin-bottom: 2.4rem;
+  margin-bottom: 1.5rem;
 
   > h4 {
     align-self: flex-start;
 
-    font-size: 1.8rem;
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+    font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_400};
+    font-size: 1.125rem;
   }
 
   @media (min-width: 768px) {
-    margin-bottom: 4.8rem;
+    margin-bottom: 3rem;
 
     > h4 {
-      font-size: 3.2rem;
+      font-size: 2rem;
     }
   }
 `

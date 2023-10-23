@@ -3,6 +3,8 @@ import { styled } from 'styled-components'
 export const InputFileContainer = styled.div`
   width: 100%;
 
+  overflow: hidden;
+
   input[type='file'] {
     display: none;
   }
@@ -10,11 +12,11 @@ export const InputFileContainer = styled.div`
   label {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
 
     width: 100%;
-
-    padding: 1.2rem 3.2rem;
+    height: 48px;
 
     border-radius: 8px;
 

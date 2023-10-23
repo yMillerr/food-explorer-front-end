@@ -12,6 +12,7 @@ export const ButtonLinkContainer = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
 
   font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_100};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};

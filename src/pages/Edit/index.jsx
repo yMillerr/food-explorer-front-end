@@ -1,63 +1,31 @@
-import { InputWrapper, NewContainer, Form, TagsWrapper } from './styles'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { Button } from '../../components/Button'
-import { FileInput } from '../../components/FileInput'
+import { NewContainer } from './styles'
+import { Form } from './components/Form'
 
-import { MdKeyboardArrowLeft } from 'react-icons/md'
-
-import { Link } from 'react-router-dom'
-import { SelectInput } from '../../components/SelectInput'
-import { Tags } from '../../components/Tags'
+import { IconArrowLeft } from '../../assets/icons'
 
 export function Edit() {
+  const navigate = useNavigate()
+
+  function handleBackToHome() {
+    navigate(-1)
+
+    localStorage.removeItem('@foodexplorer:ingredients')
+    localStorage.removeItem('@foodexplorer:product')
+  }
+
   return (
     <NewContainer>
       <main>
-        <Link href="/">
-          <MdKeyboardArrowLeft size={22} />
+        <Link onClick={handleBackToHome}>
+          <IconArrowLeft size={14} />
           voltar
         </Link>
 
-        <h2>Editar Prato</h2>
+        <h2>Editar prato</h2>
 
-        <Form action="">
-          <InputWrapper>
-            <label htmlFor="">Imagem do prato</label>
-            <FileInput title="Selecione imagem" />
-          </InputWrapper>
-
-          <InputWrapper>
-            <label htmlFor="">Nome</label>
-            <input type="text" />
-          </InputWrapper>
-
-          <InputWrapper>
-            <label htmlFor="">Categoria</label>
-            <SelectInput />
-          </InputWrapper>
-
-          <InputWrapper>
-            <label htmlFor="">Ingredientes</label>
-            <TagsWrapper>
-              <Tags isNew value="Oi" />
-              <Tags />
-            </TagsWrapper>
-          </InputWrapper>
-
-          <InputWrapper>
-            <label htmlFor="">Preço</label>
-            <input type="number" />
-          </InputWrapper>
-
-          <InputWrapper>
-            <label htmlFor="">Descrição</label>
-            <textarea />
-          </InputWrapper>
-
-          <Button title="Salvar alterações" />
-
-          <Button title="Excluir prato" />
-        </Form>
+        <Form />
       </main>
     </NewContainer>
   )

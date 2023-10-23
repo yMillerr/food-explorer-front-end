@@ -1,17 +1,42 @@
 import { styled } from 'styled-components'
 
-export const SelectInputContainer = styled.select`
+import * as Select from '@radix-ui/react-select'
+
+export const Trigger = styled(Select.Trigger)`
+  width: 100%;
+  height: 48px;
+
+  padding: 0.75rem 1rem;
+
+  border: 0;
+  border-radius: 5px;
+
+  background-color: ${({ theme }) => theme.COLORS.DARK_800};
+  color: ${({ theme }) => theme.COLORS.LIGHT_400};
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const Content = styled(Select.Content)`
   width: 100%;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
-  border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  padding: 0.675rem;
 
-  color: ${({ theme }) => theme.COLORS.LIGHT_400};
+  overflow: hidden;
+  cursor: pointer;
+`
 
-  padding: 1.6rem;
+export const Item = styled(Select.Item)`
+  padding: 0.75rem;
+  border-radius: 8px;
 
-  font-size: 1.4rem;
-  font-family: 'Roboto', sans-serif;
+  &[data-highlighted] {
+    outline: none;
+    background-color: ${({ theme }) => theme.COLORS.DARK_600};
+  }
 `
