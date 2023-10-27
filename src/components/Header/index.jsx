@@ -1,46 +1,29 @@
 import { useEffect, useState } from 'react'
-import { ButtonLink } from '../ButtonLink'
+import { Link } from 'react-router-dom'
 
-import {
-  Close,
-  Content,
-  HeaderContainer,
-  LogoContainer,
-  Trigger,
-} from './styles'
+import { HeaderContainer, LogoContainer } from './styles'
 
 import LogoFoodExplorer from '../../assets/logo/logo-foodExplorer.png'
-import MenuIcon from '../../assets/icons/icon-menu.svg'
-
-import { IconClose } from '../../assets/icons/icon-close.svg'
-
 import { BsSearch } from 'react-icons/bs'
 import { IconReceipt } from '../../assets/icons/icon-receipt.svg'
 import { FiLogOut } from 'react-icons/fi'
-import { IconSearch } from '../../assets/icons/icon-search.svg'
 
+import { HeaderModal } from './components/HeaderModal'
+import { ButtonLink } from '../ButtonLink'
 import { Input } from '../Input'
-import { Footer } from '../Footer'
-
-import { Link } from 'react-router-dom'
-
-import * as Dialog from '@radix-ui/react-dialog'
 
 import { useAuthContext } from '../../context/AuthContext'
 import { useProductsContext } from '../../context/ProductsContext'
 
 export function Header() {
   const { fetchProducts } = useProductsContext()
-  const { logOut, isAdmin } = useAuthContext()
+  const { isAdmin, logOut } = useAuthContext()
 
-  const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
 
   function handleLogOut() {
     logOut()
   }
-
-  window.addEventListener('resize', () => innerWidth >= 768 && setOpen(false))
 
   useEffect(() => {
     fetchProducts(query)
@@ -48,39 +31,11 @@ export function Header() {
 
   return (
     <HeaderContainer>
-      <Dialog.Root onOpenChange={setOpen} open={open}>
-        <Trigger>
-          <img src={MenuIcon} alt="" />
-        </Trigger>
-        <Dialog.Portal>
-          <Content>
-            <header>
-              <Close>
-                <IconClose />
-                <span>Menu</span>
-              </Close>
-            </header>
-
-            <main>
-              <Input
-                icon={IconSearch}
-                placeholder="Procure algum produto"
-                onChange={(e) => setQuery(e.target.value)}
-              />
-
-              <div>
-                {isAdmin && <Link to="/new">Novo prato</Link>}
-
-                <Link to="/" onClick={handleLogOut}>
-                  Sair
-                </Link>
-              </div>
-            </main>
-
-            <Footer />
-          </Content>
-        </Dialog.Portal>
-      </Dialog.Root>
+      <HeaderModal
+        onLogout={logOut}
+        onChange={(e) => setQuery(e.target.value)}
+        isAdmin={isAdmin}
+      />
 
       <LogoContainer>
         <img src={LogoFoodExplorer} alt="" />

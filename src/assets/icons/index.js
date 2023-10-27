@@ -10,6 +10,7 @@ import { IconSucess } from './icon-sucess.svg'
 import { IconClose } from './icon-close.svg'
 import { IconMinus } from './icon-minus.svg'
 import { IconPlus } from './icon-plus.svg'
+import { IconMenu } from './icon-menu.svg'
 
 export {
   IconArrowLeft,
@@ -24,4 +25,5 @@ export {
   IconCarouselArrows,
   IconSucess,
   IconWarning,
+  IconMenu,
 }
