@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 
 export const CardContainer = styled.div`
-  max-width: 210px;
+  width: 210px;
   height: 292px;
-  width: 100%;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_200};
 
@@ -14,13 +13,16 @@ export const CardContainer = styled.div`
 
   padding: 1.5rem;
 
-  display: grid;
-  place-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 0.75rem;
 
   color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
   text-align: center;
+
+  flex: 1;
 
   > header {
     position: absolute;
@@ -89,8 +91,7 @@ export const CardContainer = styled.div`
   }
 
   @media (min-width: 768px) {
-    max-width: 305px;
-    width: 100%;
+    width: 305px;
     height: 462px;
 
     padding: 1.5rem;

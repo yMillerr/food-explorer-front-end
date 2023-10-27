@@ -3,8 +3,15 @@ import styled from 'styled-components'
 export const CarouselContainer = styled.div`
   position: relative;
 
-  max-width: 404px;
   width: 100%;
+
+  overflow: hidden;
+
+  > div {
+    > div {
+      display: flex;
+    }
+  }
 
   > button {
     width: fit-content;
@@ -22,12 +29,10 @@ export const CarouselContainer = styled.div`
     justify-content: center;
 
     z-index: 0;
-  }
 
-  > div {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    &:disabled path {
+      fill: ${({ theme }) => theme.COLORS.LIGHT_600};
+    }
   }
 
   .arrow-left {

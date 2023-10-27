@@ -3,23 +3,19 @@ import { HomeContainer, Content, FrameContainer } from './styles'
 import frameImgDesktop from '../../assets/img-frame-desktop.png'
 import frameImgMobile from '../../assets/img-frame-mobile.png'
 
-import { Carousel } from '../../components/Carousel'
 import { Section } from '../../components/Section'
-import { Card } from '../../components/Card'
 
 import { useProductsContext } from '../../context/ProductsContext'
+import { useEffect } from 'react'
+
+import { Carousel } from '../../components/Carousel'
+import { reduceCategories } from '../../utils/reduceCategories'
 
 export function Home() {
-  const { products } = useProductsContext()
+  const { products, productSearched, fetchProducts } = useProductsContext()
 
-  const categories = products.reduce((acc, product) => {
-    const productCategoryToLowerCase = product.category.toLowerCase()
-
-    if (!acc.includes(productCategoryToLowerCase)) {
-      acc.push(productCategoryToLowerCase)
-    }
-
-    return acc
+  useEffect(() => {
+    fetchProducts()
   }, [])
 
   return (
@@ -37,31 +33,35 @@ export function Home() {
         </FrameContainer>
 
         <Content>
-          {categories.map((category) => {
-            return (
-              <Section
-                key={category}
-                title={category.replace(category[0], category[0].toUpperCase())}
-              >
-                <Carousel>
-                  {products
-                    .filter(
-                      (productCategory) =>
-                        productCategory.category === category,
-                    )
-                    .map((product) => {
-                      return (
-                        <Card
-                          product={product}
-                          key={product.id}
-                          className="keen-slider__slide"
-                        />
-                      )
-                    })}
-                </Carousel>
-              </Section>
-            )
-          })}
+          {productSearched.length <= 0 &&
+            reduceCategories(products).map((category) => {
+              return (
+                <Section
+                  key={category}
+                  title={category.replace(
+                    category[0],
+                    category[0].toUpperCase(),
+                  )}
+                >
+                  <Carousel products={products} category={category} />
+                </Section>
+              )
+            })}
+
+          {productSearched.length > 0 &&
+            reduceCategories(productSearched).map((category) => {
+              return (
+                <Section
+                  key={category}
+                  title={category.replace(
+                    category[0],
+                    category[0].toUpperCase(),
+                  )}
+                >
+                  <Carousel products={productSearched} category={category} />
+                </Section>
+              )
+            })}
         </Content>
       </main>
     </HomeContainer>

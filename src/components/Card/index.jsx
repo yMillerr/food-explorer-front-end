@@ -15,7 +15,7 @@ import { useAuthContext } from '../../context/AuthContext'
 import { useState } from 'react'
 import { useNotificationContext } from '../../context/NotificationContext'
 
-export function Card({ product }) {
+export function Card({ product, ...rest }) {
   const { isAdmin } = useAuthContext()
   const { createNotification } = useNotificationContext()
 
@@ -73,7 +73,7 @@ export function Card({ product }) {
   const isFavorite = favoriteProducts.find((prod) => prod.id === product.id)
 
   return (
-    <CardContainer>
+    <CardContainer {...rest}>
       <header>
         {isAdmin ? (
           <Link to={`/edit/${product.id}`}>
@@ -110,9 +110,7 @@ export function Card({ product }) {
         </span>
       </main>
 
-      {isAdmin ? (
-        <></>
-      ) : (
+      {!isAdmin && (
         <footer>
           <Stepper />
           <Button title="incluir" onClick={() => handleAddProduct(product)} />

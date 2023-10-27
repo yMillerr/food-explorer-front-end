@@ -11,6 +11,7 @@ export function ProductsContextProvider({ children }) {
 
   const [products, setProducts] = useState([])
   const [product, setProduct] = useState({})
+  const [productSearched, setProductsSearched] = useState([])
 
   async function createNewProduct({ product, picture }) {
     try {
@@ -112,15 +113,31 @@ export function ProductsContextProvider({ children }) {
     }
   }
 
-  async function fetchProducts(query) {
+  async function fetchProducts() {
     try {
+      const { data } = await api.get('/products')
+
+      return setProducts(data)
+    } catch (error) {
+      if (error.response) {
+        return createNotification({ title: error.response.data.message })
+      }
+    }
+  }
+
+  async function queryProducts(query) {
+    try {
+      if (!query) {
+        return setProductsSearched([])
+      }
+
       const { data } = await api.get('/products', {
         params: {
           query,
         },
       })
 
-      return setProducts(data)
+      return setProductsSearched(data)
     } catch (error) {
       if (error.response) {
         return createNotification({ title: error.response.data.message })
@@ -156,6 +173,8 @@ export function ProductsContextProvider({ children }) {
         fetchProduct,
         product,
         products,
+        productSearched,
+        queryProducts,
       }}
     >
       {children}

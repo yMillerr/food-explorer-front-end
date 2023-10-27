@@ -16,7 +16,7 @@ import { useAuthContext } from '../../context/AuthContext'
 import { useProductsContext } from '../../context/ProductsContext'
 
 export function Header() {
-  const { fetchProducts } = useProductsContext()
+  const { queryProducts } = useProductsContext()
   const { isAdmin, logOut } = useAuthContext()
 
   const [query, setQuery] = useState('')
@@ -26,7 +26,7 @@ export function Header() {
   }
 
   useEffect(() => {
-    fetchProducts(query)
+    queryProducts(query)
   }, [query])
 
   return (
