@@ -28,6 +28,8 @@ export const LogoContainer = styled.div`
 
   justify-self: center;
 
+  animation: upToDown 1.5s;
+
   > h2 {
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.BOLD_700};
@@ -42,6 +44,8 @@ export const Form = styled.form`
   flex-direction: column;
   gap: 2rem;
 
+  animation: rightToLeft 1s;
+
   > h3 {
     display: none;
 
@@ -55,10 +59,16 @@ export const Form = styled.form`
     cursor: pointer;
     text-align: center;
 
+    animation: opacity 0.6s 1.3s backwards;
+
     &:hover {
       color: ${({ theme }) => theme.COLORS.LIGHT_500};
       transition: all 0.4s;
     }
+  }
+
+  > button {
+    animation: opacity 0.6s 1s backwards;
   }
 
   @media (min-width: 768px) {
@@ -67,6 +77,8 @@ export const Form = styled.form`
 
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
       font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_400};
+
+      animation: upToDown 0.6s 0.3s backwards;
     }
 
     max-width: 476px;
@@ -89,5 +101,13 @@ export const InputWrapper = styled.div`
   > label {
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
     font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.REGULAR_400};
+  }
+
+  &:nth-child(2) {
+    animation: rightToLeft 1s 0.3s backwards;
+  }
+
+  &:nth-child(3) {
+    animation: rightToLeft 1s 0.6s backwards;
   }
 `
