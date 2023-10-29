@@ -119,9 +119,7 @@ export function ProductsContextProvider({ children }) {
 
       return setProducts(data)
     } catch (error) {
-      if (error.response) {
-        return createNotification({ title: error.response.data.message })
-      }
+      return errosNotificationHandler(error)
     }
   }
 
@@ -139,9 +137,7 @@ export function ProductsContextProvider({ children }) {
 
       return setProductsSearched(data)
     } catch (error) {
-      if (error.response) {
-        return createNotification({ title: error.response.data.message })
-      }
+      return errosNotificationHandler(error)
     }
   }
 
@@ -154,11 +150,10 @@ export function ProductsContextProvider({ children }) {
         status: 'sucess',
       })
     } catch (error) {
-      if (error.response) {
-        return createNotification({
-          title: error.response.data.message,
-        })
-      }
+      return errosNotificationHandler(
+        error,
+        'Não foi possível remover o ingrediente!',
+      )
     }
   }
 
