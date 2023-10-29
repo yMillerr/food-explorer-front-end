@@ -10,7 +10,7 @@ export const HeaderContainer = styled.header`
 
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   gap: 2.4rem;
 
   grid-area: header;
@@ -66,7 +66,6 @@ export const HeaderContainer = styled.header`
   }
 
   @media (min-width: 768px) {
-    justify-content: space-between;
     gap: 2rem;
 
     padding: 1.5rem 7.75rem;
