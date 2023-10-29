@@ -6,6 +6,8 @@ export const FormContainer = styled.form`
 
   gap: 2rem;
 
+  animation: opacity 1s 0.9s backwards;
+
   > button:nth-child(8) {
     background-color: ${({ theme }) => theme.COLORS.DARK_800};
   }
@@ -24,11 +26,6 @@ export const FormContainer = styled.form`
 
     grid-template-columns: repeat(3, 1fr);
 
-    > button:nth-child(7) {
-      grid-column: 3;
-      grid-row: 4;
-    }
-
     > button:nth-child(8) {
       grid-column: 2;
       grid-row: 4;
@@ -37,12 +34,17 @@ export const FormContainer = styled.form`
       justify-self: flex-end;
     }
 
-    > div:nth-child(2) {
-      grid-column: 2 / 3;
+    > button:nth-child(7) {
+      grid-column: 3;
+      grid-row: 4;
     }
 
     > div:nth-child(6) {
       grid-column: 1 / -1;
+    }
+
+    > div:nth-child(5) {
+      grid-column: 3;
     }
 
     > div:nth-child(4) {
@@ -50,8 +52,8 @@ export const FormContainer = styled.form`
       grid-column: 1 / 3;
     }
 
-    > div:nth-child(5) {
-      grid-column: 3;
+    > div:nth-child(2) {
+      grid-column: 2 / 3;
     }
   }
 `

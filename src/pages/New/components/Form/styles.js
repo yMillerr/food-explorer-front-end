@@ -5,6 +5,8 @@ export const FormContainer = styled.form`
   flex-direction: column;
   gap: 2rem;
 
+  animation: opacity 1s 0.9s backwards;
+
   ${({ theme, errors }) =>
     errors.map((error) => {
       return css`
@@ -24,12 +26,12 @@ export const FormContainer = styled.form`
       grid-row: 4;
     }
 
-    > div:nth-child(2) {
-      grid-column: 2 / 3;
-    }
-
     > div:nth-child(6) {
       grid-column: 1 / -1;
+    }
+
+    > div:nth-child(5) {
+      grid-column: 3;
     }
 
     > div:nth-child(4) {
@@ -37,8 +39,8 @@ export const FormContainer = styled.form`
       grid-column: 1 / 3;
     }
 
-    > div:nth-child(5) {
-      grid-column: 3;
+    > div:nth-child(2) {
+      grid-column: 2 / 3;
     }
   }
 `

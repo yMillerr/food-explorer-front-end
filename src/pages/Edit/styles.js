@@ -19,10 +19,14 @@ export const NewContainer = styled.div`
       font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_400};
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
       font-size: 1rem;
+
+      animation: leftToRight 1s 0.3s backwards;
     }
 
     h2 {
       font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_400};
+
+      animation: leftToRight 0.9s 0.4s backwards;
     }
   }
 
