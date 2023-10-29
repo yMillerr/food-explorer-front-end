@@ -22,6 +22,8 @@ export const FrameContainer = styled.section`
   display: flex;
   align-items: center;
 
+  animation: rightToLeft 1s 0.3s backwards;
+
   > .frame-mobile {
     max-width: 100%;
 

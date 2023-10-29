@@ -24,6 +24,8 @@ export const CardContainer = styled.div`
 
   flex: 1;
 
+  animation: leftToRight 1s 0.6s backwards;
+
   > header {
     position: absolute;
     top: 1rem;

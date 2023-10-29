@@ -88,4 +88,16 @@ export const GlobalStyle = createGlobalStyle`
       opacity: 1;
     }
   }
+
+  @keyframes leftToRight {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
 `
