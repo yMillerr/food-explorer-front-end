@@ -15,6 +15,8 @@ export const FooterContainer = styled.footer`
 
   grid-area: footer;
 
+  animation: downToUp 1s backwards;
+
   > span {
     font: ${({ theme }) => theme.TYPOGRAPHY.ROBOTO.REGULAR_200};
   }

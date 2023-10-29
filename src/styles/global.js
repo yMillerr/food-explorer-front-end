@@ -100,4 +100,16 @@ export const GlobalStyle = createGlobalStyle`
       opacity: 1;
     }
   }
+
+  @keyframes downToUp {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
 `
