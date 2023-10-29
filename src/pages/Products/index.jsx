@@ -24,7 +24,7 @@ export function Products() {
 
   const productPicture = !product.picture
     ? notFoundPicture
-    : `http://localhost:3333/files/${product.picture}`
+    : `https://foodexplorer-api-fs1b.onrender.com/files/${product.picture}`
 
   useEffect(() => {
     fetchProduct(id)

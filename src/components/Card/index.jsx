@@ -68,7 +68,7 @@ export function Card({ product, ...rest }) {
 
   const productPicture = !product.picture
     ? notFoundPicture
-    : `http://localhost:3333/files/${product.picture}`
+    : `http://https://foodexplorer-api-fs1b.onrender.com/files/${product.picture}`
 
   const isFavorite = favoriteProducts.find((prod) => prod.id === product.id)
 
