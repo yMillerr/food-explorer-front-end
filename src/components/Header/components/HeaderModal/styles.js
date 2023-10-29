@@ -12,13 +12,14 @@ export const Trigger = styled(Dialog.Trigger)`
 `
 
 export const Content = styled(Dialog.Content)`
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_400};
 
   position: fixed;
   inset: 0;
+  z-index: 99999;
 
   display: flex;
   flex-direction: column;
@@ -43,7 +44,7 @@ export const Content = styled(Dialog.Content)`
     max-width: 372px;
     width: 100%;
 
-    margin: 0 auto;
+    padding: 0 1.75rem;
 
     flex: 1;
 
@@ -54,7 +55,7 @@ export const Content = styled(Dialog.Content)`
         display: block;
         padding: 0.625rem;
 
-        font: lighter 1.5rem/140% 'Poppins', sans-serif;
+        font: ${({ theme }) => theme.COLORS.MEDIUM_300};
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
         border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};

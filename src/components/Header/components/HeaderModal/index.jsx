@@ -46,11 +46,17 @@ export function HeaderModal({ onLogout, isAdmin, onChange }) {
             />
 
             <div>
-              {isAdmin && <Link to="/new">Novo prato</Link>}
+              {isAdmin && (
+                <Dialog.Close asChild>
+                  <Link to="/new">Novo prato</Link>
+                </Dialog.Close>
+              )}
 
-              <Link to="/" onClick={handleLogOut}>
-                Sair
-              </Link>
+              <Dialog.Close asChild>
+                <Link to="/" onClick={handleLogOut}>
+                  Sair
+                </Link>
+              </Dialog.Close>
             </div>
           </main>
 

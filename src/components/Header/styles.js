@@ -15,6 +15,12 @@ export const HeaderContainer = styled.header`
 
   grid-area: header;
 
+  animation: upToDown 1s;
+
+  > button {
+    animation: leftToRight 0.6s 0.6s backwards;
+  }
+
   .receipt-button-mobile {
     position: relative;
 
@@ -42,6 +48,8 @@ export const HeaderContainer = styled.header`
   div:nth-child(3),
   a:last-child {
     display: none;
+
+    animation: opacity 0.6s 0.3s backwards;
   }
 
   div:nth-child(3) {
@@ -53,9 +61,16 @@ export const HeaderContainer = styled.header`
     width: 100%;
 
     display: none;
+
+    animation: opacity 0.6s 0.3s backwards;
   }
 
   @media (min-width: 768px) {
+    justify-content: space-between;
+    gap: 2rem;
+
+    padding: 1.5rem 7.75rem;
+
     > .menu-button,
     .receipt-button-mobile {
       display: none;
@@ -66,11 +81,6 @@ export const HeaderContainer = styled.header`
     section {
       display: flex;
     }
-
-    justify-content: space-between;
-    gap: 2rem;
-
-    padding: 1.5rem 7.75rem;
   }
 `
 
@@ -78,6 +88,8 @@ export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.8rem;
+
+  animation: opacity 0.6s 0.3s backwards;
 
   > img {
     width: 2.4rem;
