@@ -29,6 +29,7 @@ export function Products() {
   useEffect(() => {
     fetchProduct(id)
   }, [])
+
   return (
     <ProductsContainer>
       <Content>

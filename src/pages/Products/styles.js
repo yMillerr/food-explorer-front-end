@@ -30,6 +30,8 @@ export const Content = styled.section`
       cursor: pointer;
 
       align-self: flex-start;
+
+      animation: leftToRight 1s 0.3s;
     }
 
     > img {
@@ -41,6 +43,8 @@ export const Content = styled.section`
       width: 100%;
 
       object-fit: cover;
+
+      animation: opacity 1s 0.3s backwards;
     }
   }
 
@@ -52,6 +56,8 @@ export const Content = styled.section`
     gap: 1.5rem;
 
     margin: 1rem 0;
+
+    animation: opacity 1s 0.6s backwards;
 
     > h3 {
       font: ${({ theme }) => theme.TYPOGRAPHY.POPPINS.MEDIUM_300};
