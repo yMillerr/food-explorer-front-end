@@ -31,6 +31,7 @@ export function Carousel({ products, category }) {
           perView: 2,
           spacing: 16,
         },
+        drag: true,
       },
     },
     slideChanged(slider) {
