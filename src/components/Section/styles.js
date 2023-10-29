@@ -8,6 +8,8 @@ export const SectionContainer = styled.section`
 
   margin-bottom: 1.5rem;
 
+  animation: opacity 1s 0.3s backwards;
+
   > h4 {
     align-self: flex-start;
 
