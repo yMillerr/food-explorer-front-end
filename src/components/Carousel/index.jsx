@@ -43,8 +43,6 @@ export function Carousel({ products, category }) {
     },
   })
 
-  console.log(instanceRef.current?.track.details)
-
   return (
     <CarouselContainer>
       <div ref={sliderRef} className="keen-slider">

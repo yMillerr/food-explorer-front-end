@@ -6,13 +6,13 @@ export function NotificationContextProvider({ children }) {
   const [notifications, setNotifications] = useState([])
 
   function createNotification({ title, status = 'error' }) {
-    setNotifications([
-      {
-        id: new Date().getMilliseconds() * 10,
-        title,
-        status,
-      },
-    ])
+    const newNotification = {
+      id: new Date().getMilliseconds() * 10,
+      title,
+      status,
+    }
+
+    setNotifications((prevState) => [...prevState, newNotification])
   }
 
   function errosNotificationHandler(error, genericDescription) {
