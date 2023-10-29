@@ -18,4 +18,8 @@ export const ButtonLinkContainer = styled(Link)`
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
   border-radius: 5px;
+
+  &:hover {
+    filter: brightness(1.2);
+  }
 `

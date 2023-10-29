@@ -13,6 +13,11 @@ export const StepperContainer = styled.div`
   > button {
     background: none;
     border: 0;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: scale 0.6s;
+    }
   }
 
   @media (min-width: 1024px) {
