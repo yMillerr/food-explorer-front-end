@@ -16,6 +16,8 @@ import { useEffect } from 'react'
 import { useAuthContext } from '../../context/AuthContext'
 import { useProductsContext } from '../../context/ProductsContext'
 
+import { api } from '../../utils/axios'
+
 export function Products() {
   const { isAdmin } = useAuthContext()
   const { fetchProduct, product } = useProductsContext()
@@ -24,7 +26,7 @@ export function Products() {
 
   const productPicture = !product.picture
     ? notFoundPicture
-    : `https://foodexplorer-api-fs1b.onrender.com/files/${product.picture}`
+    : `${api.defaults.baseURL}/files/${product.picture}`
 
   useEffect(() => {
     fetchProduct(id)

@@ -15,6 +15,8 @@ import { useAuthContext } from '../../context/AuthContext'
 import { useState } from 'react'
 import { useNotificationContext } from '../../context/NotificationContext'
 
+import { api } from '../../utils/axios'
+
 export function Card({ product, ...rest }) {
   const { isAdmin } = useAuthContext()
   const { createNotification } = useNotificationContext()
@@ -68,7 +70,7 @@ export function Card({ product, ...rest }) {
 
   const productPicture = !product.picture
     ? notFoundPicture
-    : `http://https://foodexplorer-api-fs1b.onrender.com/files/${product.picture}`
+    : `${api.defaults.baseURL}/files/${product.picture}`
 
   const isFavorite = favoriteProducts.find((prod) => prod.id === product.id)
 
