@@ -34,12 +34,10 @@ export function SignUp() {
 
   const navigate = useNavigate()
 
-  async function handleSignUp(event) {
+  function handleSignUp(event) {
     const { name, email, password } = event
 
-    await signUp({ name, email, password })
-
-    navigate(-1)
+    signUp({ name, email, password }).then(() => navigate(-1))
   }
 
   return (
