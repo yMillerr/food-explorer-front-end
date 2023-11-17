@@ -13,16 +13,20 @@ export function AuthContextProvider({ children }) {
 
   async function signUp({ name, email, password }) {
     try {
-      await api.post('/users', {
+      const response = await api.post('/users', {
         name,
         email,
         password,
       })
 
-      return createNotification({
+      createNotification({
         title: 'Usuário criado com sucesso!!',
         status: 'sucess',
       })
+
+      console.log(response)
+
+      return response
     } catch (error) {
       return errosNotificationHandler(
         error,

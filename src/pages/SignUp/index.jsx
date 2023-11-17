@@ -34,10 +34,14 @@ export function SignUp() {
 
   const navigate = useNavigate()
 
-  function handleSignUp(event) {
+  async function handleSignUp(event) {
     const { name, email, password } = event
 
-    signUp({ name, email, password }).then(() => navigate(-1))
+    const response = await signUp({ name, email, password })
+
+    if (response?.status === 200) {
+      return navigate(-1)
+    }
   }
 
   return (
