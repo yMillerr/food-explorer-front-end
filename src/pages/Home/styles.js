@@ -6,6 +6,12 @@ export const HomeContainer = styled.div`
   > main {
     padding: 0 1rem;
   }
+
+  @media (max-width: 1024px) {
+    > main {
+      max-width: 1222px;
+    }
+  }
 `
 
 export const FrameContainer = styled.section`
@@ -22,7 +28,7 @@ export const FrameContainer = styled.section`
   display: flex;
   align-items: center;
 
-  animation: rightToLeft 1s 0.3s backwards;
+  animation: rightToLeft 1s 0.3s;
 
   > .frame-mobile {
     max-width: 100%;
