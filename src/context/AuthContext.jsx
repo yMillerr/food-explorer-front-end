@@ -24,8 +24,6 @@ export function AuthContextProvider({ children }) {
         status: 'sucess',
       })
 
-      console.log(response)
-
       return response
     } catch (error) {
       return errosNotificationHandler(

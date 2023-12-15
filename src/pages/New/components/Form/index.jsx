@@ -60,8 +60,6 @@ export function Form() {
       picture,
     })
 
-    console.log(picture)
-
     navigate(-1)
     reset()
 

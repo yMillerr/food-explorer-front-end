@@ -160,7 +160,7 @@ export function Form() {
       <InputWrapper>
         <label htmlFor="">Ingredientes</label>
 
-        <IngredientsWrapper intialIngredients={product.ingredients} />
+        <IngredientsWrapper intialIngredients={product.ingredients ?? []} />
       </InputWrapper>
 
       <InputWrapper>

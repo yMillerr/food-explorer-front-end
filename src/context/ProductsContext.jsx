@@ -16,22 +16,24 @@ export function ProductsContextProvider({ children }) {
   async function createNewProduct({ product, picture }) {
     try {
       const {
-        data: { id },
+        data: { productId },
       } = await api.post('/products', product)
+
+      console.log(productId)
 
       if (picture) {
         const fileToFormData = new FormData()
         fileToFormData.append('picture', picture)
 
         const { data } = await api.patch(
-          `/products/picture/${id}`,
+          `/products/picture/${productId}`,
           fileToFormData,
         )
 
         Object.assign(product, data)
       }
 
-      setProducts((prevState) => [...prevState, { id, ...product }])
+      setProducts((prevState) => [...prevState, { id: productId, ...product }])
 
       return createNotification({
         title: 'Produto criado com sucesso!!',

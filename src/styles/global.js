@@ -35,6 +35,8 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
 
+    overflow-x: hidden;
+
     background-color: ${({ theme }) => theme.COLORS.DARK_400};
 
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
