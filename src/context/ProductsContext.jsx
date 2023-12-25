@@ -19,8 +19,6 @@ export function ProductsContextProvider({ children }) {
         data: { productId },
       } = await api.post('/products', product)
 
-      console.log(productId)
-
       if (picture) {
         const fileToFormData = new FormData()
         fileToFormData.append('picture', picture)

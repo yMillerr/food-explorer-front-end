@@ -55,21 +55,16 @@ export function Form() {
       description,
       category,
       price,
-    }
+      ingredients:
+        ingredients.length > 0
+          ? ingredients.reduce((acc, ingredient) => {
+              if (!ingredient.product_id) {
+                acc.push(ingredient.name)
+              }
 
-    if (ingredients) {
-      const ingredientsMap = ingredients.reduce((acc, ingredient) => {
-        if (!ingredient.product_id) {
-          acc.push(ingredient.name)
-        }
-
-        return acc
-      }, [])
-
-      const haveIngredient =
-        ingredientsMap.length > 0 ? { ingredients: ingredientsMap } : {}
-
-      Object.assign(product, haveIngredient)
+              return acc
+            }, [])
+          : [],
     }
 
     await updateProduct({

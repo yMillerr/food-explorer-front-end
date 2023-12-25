@@ -37,7 +37,7 @@ export function IngredientsWrapper() {
         { id: new Date().getMilliseconds(), name: ingredientsText },
       ]
 
-      if (allIngredients) {
+      if (allIngredients.length > 0) {
         localStorage.setItem(
           '@foodexplorer:ingredients',
           JSON.stringify(allIngredients),

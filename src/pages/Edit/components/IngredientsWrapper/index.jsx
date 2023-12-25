@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react'
+import { api } from '../../../../utils/axios'
 
 import { IngredientsWrapperContainer } from './styles'
 
 import { Ingredients } from '../../../../components/Ingredients'
 
 import { useProductsContext } from '../../../../context/ProductsContext'
+import { useParams } from 'react-router-dom'
 
-export function IngredientsWrapper({ intialIngredients }) {
+export function IngredientsWrapper() {
   const { deleteIngredient } = useProductsContext()
 
-  const [ingredients, setIngredients] = useState(intialIngredients)
+  const [ingredients, setIngredients] = useState([])
   const [ingredientsText, setIngredientsText] = useState('')
+
+  const { id } = useParams({})
 
   async function handleDeleteIngredient(ingredientRemoved) {
     const ingredientsFilter = ingredients.filter(
@@ -23,24 +27,38 @@ export function IngredientsWrapper({ intialIngredients }) {
   }
 
   function handleAddIngredient() {
-    if (!ingredientsText) {
-      return
-    }
+    if (!ingredientsText) return
 
-    setIngredients((prev) => [
-      ...prev,
-      { id: new Date().getMilliseconds(), name: ingredientsText },
-    ])
+    setIngredients((prev) => {
+      const allIngredients = [
+        ...prev,
+        { id: new Date().getMilliseconds(), name: ingredientsText },
+      ]
+
+      if (allIngredients.length > 0) {
+        localStorage.setItem(
+          '@foodexplorer:ingredients',
+          JSON.stringify(allIngredients),
+        )
+
+        return allIngredients
+      }
+
+      return []
+    })
 
     setIngredientsText('')
   }
 
+  async function fetchIngredients() {
+    const { data } = await api.get(`/ingredients/${id}`)
+
+    return setIngredients(data)
+  }
+
   useEffect(() => {
-    localStorage.setItem(
-      '@foodexplorer:ingredients',
-      JSON.stringify(ingredients),
-    )
-  }, [ingredients])
+    fetchIngredients()
+  }, [])
 
   return (
     <IngredientsWrapperContainer>
@@ -51,7 +69,7 @@ export function IngredientsWrapper({ intialIngredients }) {
         placeholder="Adicionar"
       />
 
-      {ingredients &&
+      {ingredients.length > 0 &&
         ingredients.map((ingredient) => {
           return (
             <Ingredients

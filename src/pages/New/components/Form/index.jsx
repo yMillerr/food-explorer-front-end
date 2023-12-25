@@ -52,7 +52,10 @@ export function Form() {
       price,
       description,
       category,
-      ingredients,
+      ingredients:
+        ingredients.length > 0
+          ? ingredients.map((ingredient) => ingredient.name)
+          : [],
     }
 
     await createNewProduct({
