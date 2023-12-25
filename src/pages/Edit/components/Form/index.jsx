@@ -56,7 +56,7 @@ export function Form() {
       category,
       price,
       ingredients:
-        ingredients.length > 0
+        ingredients?.length > 0
           ? ingredients.reduce((acc, ingredient) => {
               if (!ingredient.product_id) {
                 acc.push(ingredient.name)
@@ -64,7 +64,7 @@ export function Form() {
 
               return acc
             }, [])
-          : [],
+          : null,
     }
 
     await updateProduct({

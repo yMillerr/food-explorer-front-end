@@ -53,9 +53,9 @@ export function Form() {
       description,
       category,
       ingredients:
-        ingredients.length > 0
+        ingredients?.length > 0
           ? ingredients.map((ingredient) => ingredient.name)
-          : [],
+          : null,
     }
 
     await createNewProduct({
